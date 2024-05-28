@@ -1,1 +1,0 @@
-PHP dili ile web sayfalarina arka uc (backend) yazilimi yapilir
