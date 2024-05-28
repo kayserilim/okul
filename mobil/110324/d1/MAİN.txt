@@ -1,0 +1,59 @@
+package com.example.altinok;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+import com.example.altinok.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+    ActivityMainBinding binding;
+
+    int seciliSiraNo=0;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        emir angelinajolie =new emir("güzeller güzeli",1,R.drawable.angelinajolie);
+        emir scarleth =new emir("güzeller güzeli2",2,R.drawable.scarleth);
+        emir elizabeth =new emir("güzeller güzeli aşkım",3,R.drawable.elizabeth);
+        emir margot =new emir("güzeller tanrıçası",4,R.drawable.margot);
+        ArrayList<emir> emirArrayList=new ArrayList<>();
+        emirArrayList.add(angelinajolie);
+        emirArrayList.add(scarleth);
+        emirArrayList.add(elizabeth);
+        emirArrayList.add(margot);
+        binding.imageView.setImageResource(emirArrayList.get(seciliSiraNo).foto);
+        binding.textView.setText("bilgi"+emirArrayList.get(seciliSiraNo).bilgi);
+
+        binding.button.setOnClickListener(view1 ->
+        {
+            if (seciliSiraNo>0)
+            {
+                seciliSiraNo--;
+                binding.imageView.setImageResource(emirArrayList.get(seciliSiraNo).foto);
+                binding.textView.setText("bilgi"+emirArrayList.get(seciliSiraNo).bilgi);
+            }
+            else
+                Toast.makeText(this, "İlk Resimdesiniz!!", Toast.LENGTH_SHORT).show();
+        });
+        binding.button2.setOnClickListener(view1 -> {
+            if (seciliSiraNo<emirArrayList.size()-1)
+            {
+            seciliSiraNo++;
+            binding.imageView.setImageResource(emirArrayList.get(seciliSiraNo).foto);
+            binding.textView.setText("bilgi"+emirArrayList.get(seciliSiraNo).bilgi);
+            }
+            else
+                Toast.makeText(this, "Son Resimdesiniz!!!", Toast.LENGTH_SHORT).show();
+        });
+    }
+}

@@ -1,0 +1,70 @@
+package com.example.uyg;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
+import com.example.uyg.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity {
+private ActivityMainBinding binding;
+int secilisirano=0;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+
+        Arkadaslar ogr = new Arkadaslar ("adfh agfg",1,R.drawable.ogr);
+        Arkadaslar ogr1 = new Arkadaslar ("fgjk agnn",2,R.drawable.org1);
+        Arkadaslar ogr2 = new Arkadaslar ("sdgb agmd",3,R.drawable.ogr2);
+        Arkadaslar ogr3 = new Arkadaslar ("asdfgb fjhtm",4,R.drawable.ogr3);
+        Arkadaslar ogr4 = new Arkadaslar ("asfnhf agfsdfgb",5,R.drawable.ogr4);
+        Arkadaslar ogr5 = new Arkadaslar ("gssdbd pıjık",6,R.drawable.ogr5);
+        Arkadaslar ogr6 = new Arkadaslar ("adfbn pnpoj",7,R.drawable.ogr6);
+        Arkadaslar ogr7 = new Arkadaslar ("agdhn fly",8,R.drawable.ogr7);
+        Arkadaslar ogr8 = new Arkadaslar ("tttnh fgh",9,R.drawable.ogr8);
+        Arkadaslar ogr9 = new Arkadaslar ("ahujl kjny",10,R.drawable.ogr9);
+
+        ArrayList<Arkadaslar> fotomArrayList = new ArrayList<>();
+        fotomArrayList.add(ogr);
+        fotomArrayList.add(ogr1);
+        fotomArrayList.add(ogr2);
+        fotomArrayList.add(ogr3);
+        fotomArrayList.add(ogr4);
+        fotomArrayList.add(ogr5);
+        fotomArrayList.add(ogr6);
+        fotomArrayList.add(ogr7);
+        fotomArrayList.add(ogr8);
+        fotomArrayList.add(ogr9);
+        binding.foto.setImageResource(fotomArrayList.get(secilisirano).resim);
+        binding.yazi.setText("bilgi: " + fotomArrayList.get(secilisirano).sirano);
+
+        binding.btngeri.setOnClickListener(view1 -> {
+            if (secilisirano>0) {
+            secilisirano--;
+            binding.foto.setImageResource(fotomArrayList.get(secilisirano).resim);
+            binding.yazi.setText("bilgi: " + fotomArrayList.get(secilisirano).sirano);
+            }
+            else
+                Toast.makeText(this, "ilk resim",Toast.LENGTH_LONG).show();
+        });
+        binding.btnileri.setOnClickListener(view1 -> {
+            if (secilisirano<fotomArrayList.size()-1) {
+                secilisirano++;
+                binding.foto.setImageResource(fotomArrayList.get(secilisirano).resim);
+                binding.yazi.setText("bilgi: " + fotomArrayList.get(secilisirano).sirano);
+            }
+            else
+                Toast.makeText(this, "son resim",Toast.LENGTH_LONG).show();
+        });
+
+
+    }
+}

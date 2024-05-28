@@ -1,0 +1,54 @@
+package com.example.altinok;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.Switch;
+
+import com.example.altinok.databinding.ActivityMainBinding;
+
+public class MainActivity extends AppCompatActivity {
+ActivityMainBinding binding;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        binding=ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(R.layout.activity_main);
+        setContentView(binding.getRoot());
+        Switch switchBtn = (Switch) findViewById(R.id.switch1);
+        switchBtn.setText( "Koyu Tema" );
+        SharedPreferences sharedPreferences=this.getPreferences(Context.MODE_PRIVATE);
+        int gveri=sharedPreferences.getInt("key",1);
+        AppCompatDelegate.setDefaultNightMode(gveri);
+        if(gveri==AppCompatDelegate.MODE_NIGHT_YES){
+
+            binding.switch1.setChecked(true);
+
+        }
+        else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            binding.switch1.setChecked(true);
+
+        }
+        SharedPreferences.Editor editor=sharedPreferences.edit();
+        binding.switch1.setOnClickListener(view -> {
+            boolean secim=binding.switch1.isChecked();
+            if(secim){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                editor.putInt("key",AppCompatDelegate.MODE_NIGHT_NO);
+                editor.apply();
+            }
+        });
+        binding.switch1.setOnClickListener(view -> {
+            boolean secim=binding.switch1.isChecked();
+            if (secim){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                editor.putInt("key",AppCompatDelegate.MODE_NIGHT_YES);
+                editor.apply();
+            }
+        });
+    }
+}

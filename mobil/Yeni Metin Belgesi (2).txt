@@ -1,0 +1,13 @@
+package com.example.uyg;
+
+public class Arkadaslar {
+    String bilgi;
+    int sirano;
+    int resim;
+
+    public Arkadaslar(String bilgi, int sirano, int resim) {
+        this.bilgi = bilgi;
+        this.sirano = sirano;
+        this.resim = resim;
+    }
+}

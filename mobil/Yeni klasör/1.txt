@@ -1,0 +1,4 @@
+ tasiciyi.textView2.setText("Ad ==>"+ gorselArrayList.get(seciliSiraNo).ad);
+                tasiciyi.textBilgi.setText("Soyad ==>"+ gorselArrayList.get(seciliSiraNo).soyad);
+                tasiciyi.textView3.setText("Sinif ==>"+ gorselArrayList.get(seciliSiraNo).sinif);
+                tasiciyi.textView4.setText("OkulNO ==>"+ gorselArrayList.get(seciliSiraNo).okulNo);
